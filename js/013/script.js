@@ -56,6 +56,7 @@ d3.csv("js/013/data.csv", (error, data) => {
     .attr("class", "y axis")
     .call(yAxis);
 
+  // x-axe label
   svg.append('text')
     //.attr('x', width / 2)
     //.attr('y', height + margin.bottom)
@@ -63,6 +64,7 @@ d3.csv("js/013/data.csv", (error, data) => {
     .style('text-anchor', 'middle')
     .text('Date');
 
+  // y-axe label
   svg.append("text")
     .attr("transform", "rotate(-90)")
     .attr("y", -margin.left)
@@ -70,4 +72,13 @@ d3.csv("js/013/data.csv", (error, data) => {
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .text("Value");
+
+  // title for graph
+  svg.append("text")
+    .attr("x", (width / 2))
+    .attr("y", -(margin.top / 2))
+    .attr("text-anchor", "middle")
+    .style("font-size", "16px")
+    .style("text-decoration", "underline")
+    .text("Value vs Date Graph");
 });
