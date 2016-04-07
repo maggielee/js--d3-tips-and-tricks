@@ -62,4 +62,12 @@ d3.csv("js/013/data.csv", (error, data) => {
     .attr("transform", `translate(${ width/2 }, ${ height+margin.bottom })`) // do the same as two lines above
     .style('text-anchor', 'middle')
     .text('Date');
+
+  svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -margin.left)
+    .attr("x", -(height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("Value");
 });
