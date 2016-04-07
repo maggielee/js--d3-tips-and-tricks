@@ -12,9 +12,22 @@ const parseDate = d3.time.format("%d-%b-%y").parse;
 const x = d3.time.scale().range([0, width]);
 const y = d3.scale.linear().range([height, 0]);
 
+function make_x_axis() {
+  return d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .ticks(5)
+}
+function make_y_axis() {
+  return d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(5)
+}
+
 // Define the axes
-const xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(5);
-const yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
+const xAxis = make_x_axis();
+const yAxis = make_y_axis();
 
 // Define the line
 const valueline = d3.svg.line()
@@ -31,7 +44,7 @@ const valueline = d3.svg.line()
 // • cardinal-open - an open Cardinal spline; may not intersect the start or end, but will intersect other control points. So kind of shorter than ‘cardinal’.
 // • cardinal-closed - a closed Cardinal spline, looped back on itself.
 // • monotone - cubic interpolation that makes the graph only slightly smoother.
-  .interpolate("step-before") // Smoothing out graph lines
+  .interpolate("basis") // Smoothing out graph lines
   .x((d) => x(d.date))
   .y((d) => y(d.close));
 
@@ -95,4 +108,19 @@ d3.csv("js/013/data.csv", (error, data) => {
     .style("font-size", "16px")
     .style("text-decoration", "underline")
     .text("Value vs Date Graph");
+
+  svg.append("g")
+    .attr("class", "grid")
+    .attr("transform", "translate(0," + height + ")")
+    .call(make_x_axis()
+      .tickSize(-height, 0, 0)
+      .tickFormat("")
+    );
+
+  svg.append("g")
+    .attr("class", "grid")
+    .call(make_y_axis()
+      .tickSize(-width, 0, 0)
+      .tickFormat("") // grid line text
+    );
 });
