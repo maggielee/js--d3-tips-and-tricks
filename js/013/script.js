@@ -55,4 +55,11 @@ d3.csv("js/013/data.csv", (error, data) => {
   svg.append("g")
     .attr("class", "y axis")
     .call(yAxis);
+
+  svg.append('text')
+    //.attr('x', width / 2)
+    //.attr('y', height + margin.bottom)
+    .attr("transform", `translate(${ width/2 }, ${ height+margin.bottom })`) // do the same as two lines above
+    .style('text-anchor', 'middle')
+    .text('Date');
 });
