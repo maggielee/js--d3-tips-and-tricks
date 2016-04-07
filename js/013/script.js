@@ -18,6 +18,20 @@ const yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
 
 // Define the line
 const valueline = d3.svg.line()
+
+// https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_interpolate
+// • linear – Normal line (jagged).
+// • step-before – a stepping graph alternating between vertical and horizontal segments.
+// • step-after - a stepping graph alternating between horizontal and vertical segments.
+// • basis - a B-spline, with control point duplication on the ends (that’s the one above).
+// • basis-open - an open B-spline; may not intersect the start or end.
+// • basis-closed - a closed B-spline, with the start and the end closed in a loop.
+// • bundle - equivalent to basis, except a separate tension parameter is used to straighten the spline. This could be really cool with varying tension.
+// • cardinal - a Cardinal spline, with control point duplication on the ends. It looks slightly more ‘jagged’ than basis.
+// • cardinal-open - an open Cardinal spline; may not intersect the start or end, but will intersect other control points. So kind of shorter than ‘cardinal’.
+// • cardinal-closed - a closed Cardinal spline, looped back on itself.
+// • monotone - cubic interpolation that makes the graph only slightly smoother.
+  .interpolate("step-before") // Smoothing out graph lines
   .x((d) => x(d.date))
   .y((d) => y(d.close));
 
