@@ -70,17 +70,20 @@ d3.csv("js/013/data.csv", (error, data) => {
   // Add the valueline path.
   svg.append("path")
     .attr("class", "line")
+    .style("stroke-dasharray", ("3, 3"))// make line dashed
     .attr("d", valueline(data));
 
   // Add the X Axis
   svg.append("g")
     .attr("class", "x axis")
     .attr("transform", `translate(0,${height})`)
+    .style("stroke-dasharray", ("5, 5"))// make line dashed
     .call(xAxis);
 
   // Add the Y Axis
   svg.append("g")
     .attr("class", "y axis")
+    .style("stroke-dasharray", ("7, 7"))// make line dashed
     .call(yAxis);
 
   // x-axe label
