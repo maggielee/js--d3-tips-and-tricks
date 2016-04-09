@@ -35,12 +35,9 @@ const area = d3.svg.area()
   .y1(function(d) { return y(d.close); });
 
 var areaAbove = d3.svg.area()
-  .x(function(d) { return x(d.date); })
+  .x((d) => x(d.date))
   .y0(0)
-  .y1(function(d) { return y(d.close); });
-
-// Define the line
-const valueline = d3.svg.line()
+  .y1((d) => y(d.close));
 
 // https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_interpolate
 // • linear – Normal line (jagged).
@@ -54,9 +51,17 @@ const valueline = d3.svg.line()
 // • cardinal-open - an open Cardinal spline; may not intersect the start or end, but will intersect other control points. So kind of shorter than ‘cardinal’.
 // • cardinal-closed - a closed Cardinal spline, looped back on itself.
 // • monotone - cubic interpolation that makes the graph only slightly smoother.
-  .interpolate("basis") // Smoothing out graph lines
+//   .interpolate("basis") // Smoothing out graph lines
+// Define the lines
+const valueline = d3.svg.line()
+  .interpolate("linear")
   .x((d) => x(d.date))
   .y((d) => y(d.close));
+
+const valueline2 = d3.svg.line()
+  .interpolate("basis")
+  .x((d) => x(d.date))
+  .y((d) => y(d.open));
 
 // Adds the svg canvas
 const svg = d3.select(".step.step-013")
@@ -68,20 +73,16 @@ const svg = d3.select(".step.step-013")
 
 // Get the data
 d3.csv("js/013/data.csv", (error, data) => {
+
   data.forEach((d) => {
     d.date = parseDate(d.date);
     d.close = +d.close;
+    d.open = +d.open;
   });
 
   // Scale the range of the data
   x.domain(d3.extent(data, (d) => d.date));
-  y.domain([0, d3.max(data, (d) => d.close)]);
-
-  // Add the valueline path.
-  svg.append("path")
-    .attr("class", "line")
-    .style("stroke-dasharray", ("3, 3"))// make line dashed
-    .attr("d", valueline(data));
+  y.domain([0, d3.max(data, (d) => Math.max(d.close, d.open))]);
 
   // Add the X Axis
   svg.append("g")
@@ -155,4 +156,16 @@ d3.csv("js/013/data.csv", (error, data) => {
     .style("font-size", "16px")
     .style("text-decoration", "underline")
     .text("Value vs Date Graph on chart area");
+
+  // Add the valueline path.
+  svg.append("path")
+    .attr("class", "line")
+    .style("stroke", "black")
+    .style("stroke-dasharray", ("3, 3"))// make line dashed
+    .attr("d", valueline(data));
+
+  svg.append("path") // Add the valueline2 path.
+    .style("stroke", "red")
+    .attr("d", valueline2(data));
+
 });
