@@ -29,6 +29,16 @@ function make_y_axis() {
 const xAxis = make_x_axis();
 const yAxis = make_y_axis();
 
+const area = d3.svg.area()
+  .x(function(d) { return x(d.date); })
+  .y0(height)
+  .y1(function(d) { return y(d.close); });
+
+var areaAbove = d3.svg.area()
+  .x(function(d) { return x(d.date); })
+  .y0(0)
+  .y1(function(d) { return y(d.close); });
+
 // Define the line
 const valueline = d3.svg.line()
 
@@ -126,4 +136,14 @@ d3.csv("js/013/data.csv", (error, data) => {
       .tickSize(-width, 0, 0)
       .tickFormat("") // grid line text
     );
+
+  svg.append("path")
+    .datum(data)
+    .attr("class", "area")
+    .attr("d", area);
+
+  svg.append("path")
+    .datum(data)
+    .attr("class", "area-above")
+    .attr("d", areaAbove);
 });

@@ -25,3 +25,13 @@ path {
 .grid path {
     stroke-width: 0;
 }
+
+.area {
+    fill: lightsteelblue;
+    stroke-width: 0;
+}
+
+.area-above {
+    fill: lightgreen;
+    stroke-width: 0;
+}
