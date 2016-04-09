@@ -35,3 +35,9 @@ path {
     fill: lightgreen;
     stroke-width: 0;
 }
+
+text.shadow {
+    stroke: red;
+    stroke-width: 2.5px;
+    opacity: 0.9;
+}

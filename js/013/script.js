@@ -146,4 +146,13 @@ d3.csv("js/013/data.csv", (error, data) => {
     .datum(data)
     .attr("class", "area-above")
     .attr("d", areaAbove);
+
+  svg.append("text")
+    .attr("x", (width / 2))
+    .attr("y", 25 )
+    .attr("class", "shadow")
+    .attr("text-anchor", "middle")
+    .style("font-size", "16px")
+    .style("text-decoration", "underline")
+    .text("Value vs Date Graph on chart area");
 });
