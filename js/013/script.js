@@ -10,7 +10,8 @@ const parseDate = d3.time.format("%d-%b-%y").parse;
 
 // Set the ranges
 const x = d3.time.scale().range([0, width]);
-const y = d3.scale.linear().range([height, 0]);
+const y1 = d3.scale.linear().range([height, 0]);
+const y2 = d3.scale.linear().range([height, 0]);
 
 function make_x_axis() {
   return d3.svg.axis()
@@ -20,24 +21,24 @@ function make_x_axis() {
 }
 function make_y_axis() {
   return d3.svg.axis()
-    .scale(y)
     .orient("left")
     .ticks(5)
 }
 
 // Define the axes
 const xAxis = make_x_axis();
-const yAxis = make_y_axis();
+const yAxisLeft = make_y_axis().scale(y1).orient('left');
+const yAxisRight = make_y_axis().scale(y2).orient('right');
 
 const area = d3.svg.area()
-  .x(function(d) { return x(d.date); })
+  .x((d) => x(d.date))
   .y0(height)
-  .y1(function(d) { return y(d.close); });
+  .y1((d) => y1(d.close));
 
 var areaAbove = d3.svg.area()
   .x((d) => x(d.date))
   .y0(0)
-  .y1((d) => y(d.close));
+  .y1((d) => y1(d.close));
 
 // https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-line_interpolate
 // • linear – Normal line (jagged).
@@ -56,12 +57,12 @@ var areaAbove = d3.svg.area()
 const valueline = d3.svg.line()
   .interpolate("linear")
   .x((d) => x(d.date))
-  .y((d) => y(d.close));
+  .y((d) => y1(d.close));
 
 const valueline2 = d3.svg.line()
   .interpolate("basis")
   .x((d) => x(d.date))
-  .y((d) => y(d.open));
+  .y((d) => y2(d.open));
 
 // Adds the svg canvas
 const svg = d3.select(".step.step-013")
@@ -82,7 +83,8 @@ d3.csv("js/013/data.csv", (error, data) => {
 
   // Scale the range of the data
   x.domain(d3.extent(data, (d) => d.date));
-  y.domain([0, d3.max(data, (d) => Math.max(d.close, d.open))]);
+  y1.domain([0, d3.max(data, (d) => d.close)]);
+  y2.domain([0, d3.max(data, (d) => d.open)]);
 
   // Add the X Axis
   svg.append("g")
@@ -94,8 +96,14 @@ d3.csv("js/013/data.csv", (error, data) => {
   // Add the Y Axis
   svg.append("g")
     .attr("class", "y axis")
-    .style("stroke-dasharray", ("7, 7"))// make line dashed
-    .call(yAxis);
+    .style("fill", "steelblue")
+    .call(yAxisLeft);
+
+  svg.append("g")
+    .attr("class", "y axis")
+    .attr("transform", `translate(${width},0)`)
+    .style("fill", "red")
+    .call(yAxisRight);
 
   // x-axe label
   svg.append('text')
@@ -170,14 +178,14 @@ d3.csv("js/013/data.csv", (error, data) => {
 
 
   svg.append("text")
-    .attr("transform", `translate(${width},${y(data[0].open)})`)
+    .attr("transform", `translate(${width},${y1(data[0].open)})`)
     .attr("dy", ".35em")
     .attr("text-anchor", "start")
     .style("fill", "red")
     .text("Open");
 
   svg.append("text")
-    .attr("transform", `translate(${width}, ${y(data[0].close)})`)
+    .attr("transform", `translate(${width}, ${y1(data[0].close)})`)
     .attr("dy", ".35em")
     .attr("text-anchor", "start")
     .style("fill", "steelblue")
