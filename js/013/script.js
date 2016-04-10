@@ -1,7 +1,7 @@
 // Starting with a basic graph
 
 // Set the dimensions of the canvas / graph
-const margin = { top: 30, right: 20, bottom: 30, left: 50 };
+const margin = { top: 30, right: 35, bottom: 30, left: 50 };
 const width = 600 - margin.left - margin.right;
 const height = 270 - margin.top - margin.bottom;
 
@@ -167,5 +167,20 @@ d3.csv("js/013/data.csv", (error, data) => {
   svg.append("path") // Add the valueline2 path.
     .style("stroke", "red")
     .attr("d", valueline2(data));
+
+
+  svg.append("text")
+    .attr("transform", `translate(${width},${y(data[0].open)})`)
+    .attr("dy", ".35em")
+    .attr("text-anchor", "start")
+    .style("fill", "red")
+    .text("Open");
+
+  svg.append("text")
+    .attr("transform", `translate(${width}, ${y(data[0].close)})`)
+    .attr("dy", ".35em")
+    .attr("text-anchor", "start")
+    .style("fill", "steelblue")
+    .text("Close");
 
 });
