@@ -1,7 +1,7 @@
 // Starting with a basic graph
 
 // Set the dimensions of the canvas / graph
-const margin = { top: 30, right: 35, bottom: 30, left: 50 };
+const margin = { top: 30, right: 35, bottom: 50, left: 50 };
 const width = 600 - margin.left - margin.right;
 const height = 270 - margin.top - margin.bottom;
 
@@ -91,7 +91,12 @@ d3.csv("js/013/data.csv", (error, data) => {
     .attr("class", "x axis")
     .attr("transform", `translate(0,${height})`)
     .style("stroke-dasharray", ("5, 5"))// make line dashed
-    .call(xAxis);
+    .call(xAxis)
+    .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", ".15em")
+      .attr("transform", "rotate(-65)");
 
   // Add the Y Axis
   svg.append("g")
