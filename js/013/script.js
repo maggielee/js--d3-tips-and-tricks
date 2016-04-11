@@ -1,7 +1,7 @@
 // Starting with a basic graph
 
 // Set the dimensions of the canvas / graph
-const margin = { top: 30, right: 35, bottom: 50, left: 50 };
+const margin = { top: 30, right: 35, bottom: 75, left: 50 };
 const width = 600 - margin.left - margin.right;
 const height = 270 - margin.top - margin.bottom;
 
@@ -26,7 +26,9 @@ function make_y_axis() {
 }
 
 // Define the axes
-const xAxis = make_x_axis();
+const xAxis = make_x_axis()
+  // .tickFormat(d3.time.format("%A %d %B %Y"));
+  .tickFormat(d3.time.format("%Y-%m-%d"));
 const yAxisLeft = make_y_axis().scale(y1).orient('left');
 const yAxisRight = make_y_axis().scale(y2).orient('right');
 
