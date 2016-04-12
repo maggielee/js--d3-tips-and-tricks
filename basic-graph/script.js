@@ -27,7 +27,7 @@ function make_y_axis() {
 
 // Define the axes
 const xAxis = make_x_axis()
-  // .tickFormat(d3.time.format("%A %d %B %Y"));
+// .tickFormat(d3.time.format("%A %d %B %Y"));
   .tickFormat(d3.time.format("%Y-%m-%d"));
 const yAxisLeft = make_y_axis().scale(y1).orient('left');
 const yAxisRight = make_y_axis().scale(y2).orient('right');
@@ -75,7 +75,7 @@ const svg = d3.select(".step.step-013")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
 // Get the data
-d3.csv("js/013/data.csv", (error, data) => {
+d3.csv("data.csv", (error, data) => {
 
   data.forEach((d) => {
     d.date = parseDate(d.date);
@@ -95,10 +95,10 @@ d3.csv("js/013/data.csv", (error, data) => {
     .style("stroke-dasharray", ("5, 5"))// make line dashed
     .call(xAxis)
     .selectAll("text")
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", ".15em")
-      .attr("transform", "rotate(-65)");
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", ".15em")
+    .attr("transform", "rotate(-65)");
 
   // Add the Y Axis
   svg.append("g")
@@ -116,7 +116,7 @@ d3.csv("js/013/data.csv", (error, data) => {
   svg.append('text')
     //.attr('x', width / 2)
     //.attr('y', height + margin.bottom)
-    .attr("transform", `translate(${ width/2 }, ${ height+margin.bottom })`) // do the same as two lines above
+    .attr("transform", `translate(${ width / 2 }, ${ height + margin.bottom })`) // do the same as two lines above
     .style('text-anchor', 'middle')
     .text('Date');
 
@@ -165,7 +165,7 @@ d3.csv("js/013/data.csv", (error, data) => {
 
   svg.append("text")
     .attr("x", (width / 2))
-    .attr("y", 25 )
+    .attr("y", 25)
     .attr("class", "shadow")
     .attr("text-anchor", "middle")
     .style("font-size", "16px")
@@ -199,3 +199,34 @@ d3.csv("js/013/data.csv", (error, data) => {
     .text("Close");
 
 });
+
+function updateData() {
+  // Get the data again
+  d3.csv("data-alt.csv", (error, data) => {
+    data.forEach((d) => {
+      d.date = parseDate(d.date);
+      d.close = +d.close;
+      d.open = +d.open;
+    });
+  // Scale the range of the data again
+  x.domain(d3.extent(data, (d) => d.date));
+  y1.domain([0, d3.max(data, (d) => d.close)]);
+  y2.domain([0, d3.max(data, (d) => d.open)]);
+
+  // Select the section we want to apply our changes to
+  var svg = d3.select(".step.step-013").transition();
+  // Make the changes
+  svg.select(".line") // change the line
+    .duration(750)
+    .attr("d", valueline(data));
+  svg.select(".x.axis") // change the x axis
+    .duration(750)
+    .call(xAxis);
+  svg.select(".y.axis") // change the y axis
+    .duration(750)
+    .call(yAxisLeft);
+  svg.select(".y.axis") // change the y axis
+    .duration(750)
+    .call(yAxisRight);
+  });
+}
