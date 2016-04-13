@@ -32,3 +32,10 @@ holder.append("rect") // attach a rectangle
   .attr("width", 200) // set the width
   .attr("rx", 50) // set the x corner curve radius
   .attr("ry", 20); // set the y corner curve radius
+
+holder.append("line") // attach a line
+  .style("stroke", "black") // colour the line
+  .attr("x1", 150) // x position of the first end of the line
+  .attr("y1", 50) // y position of the first end of the line
+  .attr("x2", 350) // x position of the second end of the line
+  .attr("y2", 200); // y position of the second end of the line
