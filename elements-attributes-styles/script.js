@@ -39,3 +39,8 @@ holder.append("line") // attach a line
   .attr("y1", 50) // y position of the first end of the line
   .attr("x2", 350) // x position of the second end of the line
   .attr("y2", 200); // y position of the second end of the line
+
+holder.append("polyline") // attach a polyline
+  .style("stroke", "black") // colour the line
+  .style("fill", "none") // remove any fill colour
+  .attr("points", "400,150, 500,250, 600,150"); // x,y points
