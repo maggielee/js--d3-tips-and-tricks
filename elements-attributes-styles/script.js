@@ -23,3 +23,12 @@ holder.append("rect") // attach a rectangle
   .attr("y", 160) // position the top of the rectangle
   .attr("height", 50) // set the height
   .attr("width", 200); // set the width
+
+holder.append("rect") // attach a rectangle
+  .style("fill", "green")
+  .attr("x", 200) // position the left of the rectangle
+  .attr("y", 50) // position the top of the rectangle
+  .attr("height", 100) // set the height
+  .attr("width", 200) // set the width
+  .attr("rx", 50) // set the x corner curve radius
+  .attr("ry", 20); // set the y corner curve radius
