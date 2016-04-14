@@ -44,3 +44,8 @@ holder.append("polyline") // attach a polyline
   .style("stroke", "black") // colour the line
   .style("fill", "none") // remove any fill colour
   .attr("points", "400,150, 500,250, 600,150"); // x,y points
+
+holder.append("polygon") // attach a polygon
+  .style("stroke", "red") // colour the line
+  .style("fill", "none") // remove any fill colour
+  .attr("points", "100,250, 200,350, 300,250"); // x,y points
