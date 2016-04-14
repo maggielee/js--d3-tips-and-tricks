@@ -79,4 +79,11 @@ holder.append("text") // append text
   .attr("x", 700) // set x position of left side of text
   .attr("y", 100) // set y position of bottom of text
   .attr("text-anchor", "middle") // set anchor y justification
-  .text("Hello World"); // define the text to display
+  .text("Hello World anchor to middle"); // define the text to display
+
+holder.append("text") // append text
+  .style("fill", "black") // fill the text with the colour black
+  .attr("x", 700) // set x position of left side of text
+  .attr("y", 130) // set y position of bottom of text
+  .attr("text-anchor", "end") // set anchor y justification
+  .text("Hello World anchor to end"); // define the text to display
