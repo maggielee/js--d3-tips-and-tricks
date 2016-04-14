@@ -54,3 +54,22 @@ holder.append("path") // attach a path
   .style("stroke", "green") // colour the line
   .style("fill", "none") // remove any fill colour
   .attr("d", "M 300,260, L 400,360, L 500,250 Z"); // path commands
+
+
+// define the clipPath
+holder.append("clipPath") // define a clip path
+  .attr("id", "ellipse-clip") // give the clipPath an ID
+  .append("ellipse") // shape it as an ellipse
+  .attr("cx", 475) // position the x-centre
+  .attr("cy", 100) // position the y-centre
+  .attr("rx", 100) // set the x radius
+  .attr("ry", 50); // set the y radius
+
+// draw clipped path on the screen
+holder.append("rect") // attach a rectangle
+  .attr("x", 425) // position the left of the rectangle
+  .attr("y", 75) // position the top of the rectangle
+  .attr("clip-path", "url(#ellipse-clip)") // clip the rectangle
+  .style("fill", "lightgrey") // fill the clipped path with grey
+  .attr("height", 100) // set the height
+  .attr("width", 200); // set the width
