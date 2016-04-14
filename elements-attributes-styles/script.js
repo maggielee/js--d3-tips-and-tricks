@@ -49,3 +49,8 @@ holder.append("polygon") // attach a polygon
   .style("stroke", "red") // colour the line
   .style("fill", "none") // remove any fill colour
   .attr("points", "100,250, 200,350, 300,250"); // x,y points
+
+holder.append("path") // attach a path
+  .style("stroke", "green") // colour the line
+  .style("fill", "none") // remove any fill colour
+  .attr("d", "M 300,260, L 400,360, L 500,250 Z"); // path commands
