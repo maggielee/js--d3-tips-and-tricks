@@ -118,3 +118,11 @@ holder.append("text") // append text
   .attr("dy", ".35em") // set offset y position
   .attr("text-anchor", "end") // set anchor y justification
   .text("Hello World"); // define the text to display
+
+holder.append("text") // append text
+  .style("fill", "black") // fill the text with the colour black
+  .attr("x", 700) // set x position of left side of text
+  .attr("y", 280) // set y position of bottom of text
+  .attr("dy", ".71em") // set offset y position
+  .attr("text-anchor", "end") // set anchor y justification
+  .text("Hello World"); // define the text to display
