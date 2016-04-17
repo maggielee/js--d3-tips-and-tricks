@@ -126,3 +126,9 @@ holder.append("text") // append text
   .attr("dy", ".71em") // set offset y position
   .attr("text-anchor", "end") // set anchor y justification
   .text("Hello World"); // define the text to display
+
+holder.append("rect") // attach a rectangle
+  .attr("x", 20) // position the left of the rectangle
+  .attr("y", 350) // position the top of the rectangle
+  .attr("height", 20) // set the height
+  .attr("width", 40); // set the width
