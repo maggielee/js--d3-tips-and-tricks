@@ -132,3 +132,11 @@ holder.append("rect") // attach a rectangle
   .attr("y", 350) // position the top of the rectangle
   .attr("height", 20) // set the height
   .attr("width", 40); // set the width
+
+
+holder.append("ellipse") // attach an circle
+  .attr('fill', 'green')
+  .attr("cx", 300) // position the x-centre
+  .attr("cy", 350) // position the y-centre
+  .attr("rx", 50) // set the x radius
+  .attr("ry", 50); // set the y radius
