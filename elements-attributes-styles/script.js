@@ -140,3 +140,17 @@ holder.append("ellipse") // attach an circle
   .attr("cy", 350) // position the y-centre
   .attr("rx", 50) // set the x radius
   .attr("ry", 50); // set the y radius
+
+holder.append("ellipse") // attach an circle
+  .style('fill', 'red')    // inner color
+  .style('stroke', 'blue') // line colors
+  .style('opacity', 0.7)   // opacity
+  .style("fill-opacity", .4) // set the fill opacity
+  .style("stroke-opacity", .9) // set the stroke opacity
+  .style("stroke-width", 5) // set the stroke width
+  .style("stroke-dasharray", ("40,3")) // make the stroke dashed
+  .style("stroke-linecap", "butt") // stroke-linecap type "butt|round|square"
+  .attr("cx", 550) // position the x-centre
+  .attr("cy", 450) // position the y-centre
+  .attr("rx", 150) // set the x radius
+  .attr("ry", 150); // set the y radius
