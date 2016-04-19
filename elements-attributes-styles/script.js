@@ -2,7 +2,7 @@ const holder = d3.select("body") // select the 'body' element
   .append("svg") // append an SVG element to the body
   .attr("class", "svg-area")
   .attr("width", 800) // make the SVG element 449 pixels wide
-  .attr("height", 600); // make the SVG element 249 pixels high
+  .attr("height", 800); // make the SVG element 249 pixels high
 
 // draw a circle
 holder.append("circle") // attach a circle
@@ -154,3 +154,22 @@ holder.append("ellipse") // attach an circle
   .attr("cy", 450) // position the y-centre
   .attr("rx", 150) // set the x radius
   .attr("ry", 150); // set the y radius
+
+holder.append("polyline") // attach a polyline
+  .style("stroke", "black") // colour the line
+  .style("fill", "none") // remove any fill colour
+  .style("stroke-width", 20) // colour the line
+  .style("stroke-linejoin", "round") // shape the line join
+  .attr("points", "20,500, 100,550, 200,500"); // x,y points
+holder.append("polyline") // attach a polyline
+  .style("stroke", "red") // colour the line
+  .style("fill", "none") // remove any fill colour
+  .style("stroke-width", 20) // colour the line
+  .style("stroke-linejoin", "butt") // shape the line join
+  .attr("points", "20,525, 100,575, 200,525"); // x,y points
+holder.append("polyline") // attach a polyline
+  .style("stroke", "blue") // colour the line
+  .style("fill", "none") // remove any fill colour
+  .style("stroke-width", 20) // colour the line
+  .style("stroke-linejoin", "square") // shape the line join
+  .attr("points", "20,550, 100,600, 200,550"); // x,y points
