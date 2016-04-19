@@ -173,3 +173,10 @@ holder.append("polyline") // attach a polyline
   .style("stroke-width", 20) // colour the line
   .style("stroke-linejoin", "square") // shape the line join
   .attr("points", "20,550, 100,600, 200,550"); // x,y points
+
+holder.append("text") // append text
+  .style("fill", "black") // make the text black
+  .style("writing-mode", "tb") // set the writing mode
+  .attr("x", 10) // set x position of left side of text
+  .attr("y", 150) // set y position of bottom of text
+  .text("Hello World"); // define the text to display
