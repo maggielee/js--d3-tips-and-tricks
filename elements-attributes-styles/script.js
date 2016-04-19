@@ -180,3 +180,13 @@ holder.append("text") // append text
   .attr("x", 10) // set x position of left side of text
   .attr("y", 150) // set y position of bottom of text
   .text("Hello World"); // define the text to display
+
+holder.append("text") // append text
+  .style("fill", "black") // make the text black
+  .style("writing-mode", "tb") // set the writing mode
+  .style("glyph-orientation-vertical", 0)
+  .style('letter-spacing', '0.5em')
+  .attr("rotate", -90)
+  .attr("x", 30) // set x position of left side of text
+  .attr("y", 150) // set y position of bottom of text
+  .text("Hello World"); // define the text to display
