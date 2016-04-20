@@ -190,3 +190,25 @@ holder.append("text") // append text
   .attr("x", 30) // set x position of left side of text
   .attr("y", 150) // set y position of bottom of text
   .text("Hello World"); // define the text to display
+
+holder.append("line") // attach a line
+  .style("stroke-linecap", "butt") // stroke-linecap type
+  .attr("class", "linecap") // inherits styles from CSS
+  .attr("x1", 500) // x position of the first end of the line
+  .attr("y1", 550) // y position of the first end of the line
+  .attr("x2", 750) // x position of the second end of the line
+  .attr("y2", 550); // y position of the second end of the line
+holder.append("line") // attach a line
+  .style("stroke-linecap", "round") // stroke-linecap type
+  .attr("class", "linecap") // inherits styles from CSS
+  .attr("x1", 500) // x position of the first end of the line
+  .attr("y1", 600) // y position of the first end of the line
+  .attr("x2", 750) // x position of the second end of the line
+  .attr("y2", 600); // y position of the second end of the line
+holder.append("line") // attach a line
+  .style("stroke-linecap", "square") // stroke-linecap type
+  .attr("class", "linecap") // inherits styles from CSS
+  .attr("x1", 500) // x position of the first end of the line
+  .attr("y1", 650) // y position of the first end of the line
+  .attr("x2", 750) // x position of the second end of the line
+  .attr("y2", 650); // y position of the second end of the line
