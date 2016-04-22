@@ -1,0 +1,10 @@
+.bs-sidebar .nav > .active > ul {
+    display: block;
+    margin-bottom: 8px;
+}
+
+text.shadow {
+    stroke: white;
+    stroke-width: 2.3px;
+    opacity: 0.5;
+}
