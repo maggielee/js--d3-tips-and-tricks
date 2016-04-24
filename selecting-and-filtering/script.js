@@ -29,6 +29,11 @@ const valueline = d3.svg.line()
   .x((d) => x(d.date))
   .y((d) => y(d.close));
 
+var area = d3.svg.area()
+  .x((d) => x(d.date))
+  .y0(height)
+  .y1((d) => y(d.close));
+
 // Define the div for the tooltip
 const div = d3.select("body").append("div")
   .attr("class", "tooltip")
@@ -57,6 +62,11 @@ d3.csv("data.csv", (error, data) => {
   svg.append("path")
     .attr("class", "line")
     .attr("d", valueline(data));
+
+  svg.append("path")
+    .datum(data)
+    .attr("class", "area")
+    .attr("d", area);
 
   // Add the X Axis
   svg.append("g")
@@ -91,17 +101,18 @@ d3.csv("data.csv", (error, data) => {
 
   svg.append("linearGradient")
     .attr("id", "line-gradient")
+    .attr("id", "area-gradient")
     .attr("gradientUnits", "userSpaceOnUse")
     .attr("x1", 0).attr("y1", y(0))
     .attr("x2", 0).attr("y2", y(1000))
     .selectAll("stop")
     .data([
-      {offset: "0%", color: "red"},
-      {offset: "30%", color: "red"},
-      {offset: "45%", color: "black"},
-      {offset: "55%", color: "black"},
-      {offset: "60%", color: "lawngreen"},
-      {offset: "100%", color: "lawngreen"}
+      { offset: "0%", color: "red" },
+      { offset: "30%", color: "red" },
+      { offset: "45%", color: "black" },
+      { offset: "55%", color: "black" },
+      { offset: "60%", color: "lawngreen" },
+      { offset: "100%", color: "lawngreen" }
     ])
     .enter().append("stop")
     .attr("offset", (d) => d.offset)
