@@ -1,5 +1,5 @@
 // Set the dimensions of the canvas / graph
-const margin = {top: 30, right: 20, bottom: 30, left: 50};
+const margin = { top: 30, right: 20, bottom: 30, left: 50 };
 const width = 600 - margin.left - margin.right;
 const height = 270 - margin.top - margin.bottom;
 
@@ -88,4 +88,22 @@ d3.csv("data.csv", (error, data) => {
     .attr("r", 3.5)
     .attr("cx", (d) => x(d.date))
     .attr("cy", (d) => y(d.close));
+
+  svg.append("linearGradient")
+    .attr("id", "line-gradient")
+    .attr("gradientUnits", "userSpaceOnUse")
+    .attr("x1", 0).attr("y1", y(0))
+    .attr("x2", 0).attr("y2", y(1000))
+    .selectAll("stop")
+    .data([
+      {offset: "0%", color: "red"},
+      {offset: "30%", color: "red"},
+      {offset: "45%", color: "black"},
+      {offset: "55%", color: "black"},
+      {offset: "60%", color: "lawngreen"},
+      {offset: "100%", color: "lawngreen"}
+    ])
+    .enter().append("stop")
+    .attr("offset", (d) => d.offset)
+    .attr("stop-color", (d) => d.color);
 });
