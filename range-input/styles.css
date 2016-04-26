@@ -1,0 +1,5 @@
+label[for=nRadius] {
+    display: inline-block;
+    width: 240px;
+    text-align: right;
+}
