@@ -1,7 +1,8 @@
 (function() {
   const width = 600;
-
   const height = 300;
+  const nRadiusInput = document.querySelector('#nRadius');
+
   const holder = d3.select("#container1")
     .append("svg")
     .attr("width", width)
@@ -19,25 +20,23 @@
   const update = (nRadius) => {
     // adjust the text on the range slider
     d3.select("#nRadius-value").text(nRadius);
-    d3.select("#nRadius").property("value", nRadius);
+    d3.select(nRadiusInput).property("value", nRadius);
     // update the circle radius
     holder.selectAll("circle")
       .attr("r", nRadius);
   };
 
   // when the input range changes update the circle
-  d3.select("#nRadius").on("input", function() {
-    update(+this.value);
-  });
+  d3.select("#nRadius").on("input", () => update(+nRadiusInput.value));
   // Initial starting radius of the circle
   update(120);
-
-
 })();
 
 (function() {
   const width = 600;
   const height = 300;
+  const nWidthInput = document.querySelector('#nWidth');
+  const nHeightInput = document.querySelector('#nHeight');
   const holder = d3.select("#container2")
     .append("svg")
     .attr("width", width)
@@ -73,14 +72,10 @@
   };
 
   // read a change in the height input
-  d3.select("#nHeight").on("input", function() {
-    updateHeight(+this.value);
-  });
+  d3.select("#nHeight").on("input", () => updateHeight(+nHeightInput.value));
 
   // read a change in the width input
-  d3.select("#nWidth").on("input", function() {
-    updateWidth(+this.value);
-  });
+  d3.select("#nWidth").on("input", () => updateWidth(+nWidthInput.value));
 
   // update the values
   updateHeight(150);
