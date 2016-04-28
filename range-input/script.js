@@ -98,6 +98,16 @@
   holder.append("text")
     .style("fill", "black")
     .style("font-size", "56px")
+    .attr('class', 'el1')
+    .attr("dy", ".35em")
+    .attr("text-anchor", "middle")
+    .attr("transform", "translate(300,150) rotate(0)")
+    .text("vvscode.by");
+  // draw the text
+  holder.append("text")
+    .style("fill", "black")
+    .style("font-size", "56px")
+    .attr('class', 'el2')
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
     .attr("transform", "translate(300,150) rotate(0)")
@@ -111,7 +121,8 @@
     d3.select(nAngleInput2).property("value", nAngle);
 
     // rotate the text
-    holder.select("text").attr("transform", `translate(300,150) rotate(${nAngle})`);
+    holder.select("text.el1").attr("transform", `translate(300,150) rotate(${nAngle})`);
+    holder.select("text.el2").attr("transform", `translate(300,150) rotate(${360 - nAngle})`);
   };
 
   // when the input range changes update the angle
