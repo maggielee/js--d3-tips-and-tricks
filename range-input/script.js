@@ -87,6 +87,7 @@
   const width = 600;
   const height = 300;
   const nAngleInput = document.querySelector('#nAngle');
+  const nAngleInput2 = document.querySelector('#nAngle2');
 
   const holder = d3.select("#container3")
     .append("svg")
@@ -106,14 +107,16 @@
   const update = (nAngle) => {
     // adjust the text on the range slider
     d3.select("#nAngle-value").text(nAngle);
-    d3.select("#nAngle").property("value", nAngle);
+    d3.select(nAngleInput).property("value", nAngle);
+    d3.select(nAngleInput2).property("value", nAngle);
 
     // rotate the text
     holder.select("text").attr("transform", `translate(300,150) rotate(${nAngle})`);
   };
 
   // when the input range changes update the angle
-  d3.select("#nAngle").on("input", () => update(+nAngleInput.value));
+  d3.select(nAngleInput).on("input", () => update(+nAngleInput.value));
+  d3.select(nAngleInput2).on("input", () => update(+nAngleInput2.value));
 
   // Initial starting angle of the text
   update(0);
