@@ -82,3 +82,39 @@
   updateWidth(100);
 
 })();
+
+(function() {
+  const width = 600;
+  const height = 300;
+  const nAngleInput = document.querySelector('#nAngle');
+
+  const holder = d3.select("#container3")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  // draw the text
+  holder.append("text")
+    .style("fill", "black")
+    .style("font-size", "56px")
+    .attr("dy", ".35em")
+    .attr("text-anchor", "middle")
+    .attr("transform", "translate(300,150) rotate(0)")
+    .text("vvscode.by");
+
+  // update the element
+  const update = (nAngle) => {
+    // adjust the text on the range slider
+    d3.select("#nAngle-value").text(nAngle);
+    d3.select("#nAngle").property("value", nAngle);
+
+    // rotate the text
+    holder.select("text").attr("transform", `translate(300,150) rotate(${nAngle})`);
+  };
+
+  // when the input range changes update the angle
+  d3.select("#nAngle").on("input", () => update(+nAngleInput.value));
+
+  // Initial starting angle of the text
+  update(0);
+})();
