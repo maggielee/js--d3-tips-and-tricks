@@ -31,7 +31,7 @@ const svg = d3.select("#container")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
 // Get the data
-d3.csv("data.csv", function(error, data) {
+d3.csv("data.csv", (error, data) => {
   data.forEach((d) => {
     d.date1 = parseDate(d.date);
     d.close = +d.close;
@@ -59,10 +59,9 @@ d3.csv("data.csv", function(error, data) {
 
   // The table generation function
   const tabulate = (data, columns) => {
-    const table = d3.select("#container").append("table")
-      .attr("style", "margin-left: 250px"),
-      thead = table.append("thead"),
-      tbody = table.append("tbody");
+    const table = d3.select("#container").append("table").attr("style", "margin-left: 250px");
+    const thead = table.append("thead");
+    const tbody = table.append("tbody");
 
     // append the header row
     thead.append("tr")
@@ -70,7 +69,7 @@ d3.csv("data.csv", function(error, data) {
       .data(columns)
       .enter()
       .append("th")
-      .text((column) => column);
+        .text((column) => column);
 
     // create a row for each object in the data
     const rows = tbody.selectAll("tr")
@@ -83,8 +82,8 @@ d3.csv("data.csv", function(error, data) {
       .data((row) => columns.map((column) => ({ column, value: row[column] })))
       .enter()
       .append("td")
-      .attr("style", "font-family: Courier")
-      .html((d) => d.value);
+        .attr("style", "font-family: Courier")
+        .html((d) => d.value);
 
     return table;
   };
