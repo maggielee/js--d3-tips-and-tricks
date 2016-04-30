@@ -1,0 +1,30 @@
+body { font: 12px Arial;}
+
+path {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.table {
+    margin-left: 200px;
+    border-collapse: collapse;
+    border: 2px black solid;
+}
+
+td, th {
+    padding: 1px 4px;
+    border: 1px black solid;
+}
+
+td {
+    font-family: Courier;
+}
