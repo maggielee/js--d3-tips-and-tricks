@@ -97,3 +97,28 @@ d3.csv("data.csv", (error, data) => {
     .text((column) => column.charAt(0).toUpperCase() + column.substr(1));
 
 });
+
+var word = "vvscode.by";
+
+// draw a rectangle
+svg.append("a")
+  .attr("xlink:href", 'http://vvscode.by')
+  .append("rect")
+  .attr("x", 100)
+  .attr("y", 50)
+  .attr("height", 100)
+  .attr("width", 200)
+  .style("fill", "lightgreen")
+  .attr("rx", 40)
+  .attr("ry", 10);
+
+// draw text on the screen
+svg.append("text")
+  .attr("x", 200)
+  .attr("y", 100)
+  .style("fill", "black")
+  .style("font-size", "20px")
+  .attr("dy", ".35em")
+  .attr("text-anchor", "middle")
+  .style("pointer-events", "none")
+  .text(word);
