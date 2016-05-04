@@ -51,9 +51,7 @@ d3.json("data.json", (error, graph) => {
     .attr("transform", (d) => `translate(${d.x},${d.y})`)
     .call(d3.behavior.drag()
       .origin((d) => d)
-      .on("dragstart", function() {
-        this.parentNode.appendChild(this);
-      })
+      .on("dragstart", function() { this.parentNode.appendChild(this); })
       .on("drag", function dragmove(d) {
           d3.select(this).attr("transform", `translate(${d.x}, ${(d.y = Math.max(0, Math.min(height - d.dy, d3.event.y)))})`);
           sankey.relayout();
