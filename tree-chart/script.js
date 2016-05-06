@@ -1,24 +1,39 @@
 const treeData = {
   "name": "Top Level",
   "parent": "null",
+  "value": 10,
+  "type": "black",
+  "level": "red",
   "children": [
     {
       "name": "Level 2: A",
       "parent": "Top Level",
+      "value": 15,
+      "type": "grey",
+      "level": "red",
       "children": [
         {
           "name": "Son of A",
-          "parent": "Level 2: A"
+          "parent": "Level 2: A",
+          "value": 5,
+          "type": "steelblue",
+          "level": "orange"
         },
         {
           "name": "Daughter of A",
-          "parent": "Level 2: A"
+          "parent": "Level 2: A",
+          "value": 8,
+          "type": "steelblue",
+          "level": "red"
         }
       ]
     },
     {
       "name": "Level 2: B",
-      "parent": "Top Level"
+      "parent": "Top Level",
+      "value": 10,
+      "type": "grey",
+      "level": "green"
     }
   ]
 };
@@ -55,11 +70,12 @@ const update = (source) => {
     .attr("transform", (d) => `translate(${d.y},${d.x})`);
 
   nodeEnter.append("circle")
-    .attr("r", 10)
-    .style("fill", "#fff");
+    .attr("r", (d) => d.value)
+    .style("stroke", (d) => d.type)
+    .style("fill", (d) => d.level);
 
   nodeEnter.append("text")
-    .attr("x", (d) => d.children || d._children ? -13 : 13)
+    .attr("x", (d) =>  d.children || d._children ? (d.value + 4) * -1 : d.value + 4)
     .attr("dy", ".35em")
     .attr("text-anchor", (d) => d.children || d._children ? "end" : "start")
     .text((d) => d.name)
@@ -71,6 +87,7 @@ const update = (source) => {
     .enter()
     .insert("path", "g")
     .attr("class", "link")
+    .style("stroke", (d) => d.target.level)
     .attr("d", diagonal);
 
 };
