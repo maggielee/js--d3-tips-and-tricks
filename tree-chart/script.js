@@ -4,26 +4,30 @@ const treeData = {
   "value": 10,
   "type": "black",
   "level": "red",
+  "icon": "earth.png",
   "children": [
     {
       "name": "Level 2: A",
       "parent": "Top Level",
-      "value": 15,
+      "value": 5,
       "type": "grey",
       "level": "red",
+      "icon": "cart.png",
       "children": [
         {
           "name": "Son of A",
           "parent": "Level 2: A",
           "value": 5,
           "type": "steelblue",
+          "icon": "lettern.png",
           "level": "orange"
         },
         {
           "name": "Daughter of A",
           "parent": "Level 2: A",
-          "value": 8,
+          "value": 18,
           "type": "steelblue",
+          "icon": "vlc.png",
           "level": "red"
         }
       ]
@@ -33,6 +37,7 @@ const treeData = {
       "parent": "Top Level",
       "value": 10,
       "type": "grey",
+      "icon": "random.png",
       "level": "green"
     }
   ]
@@ -78,14 +83,22 @@ const update = (source) => {
   // • triangle-up - an upward-pointing equilateral triangle.
   nodeEnter.append("path")
     .attr("d", d3.svg.symbol()
-      .size((d) => 10*d.value)
-      .type((d) => (d.value >= 9)? "cross" : "diamond")
+      .size((d) => 100 * d.value)
+      .type((d) => (d.value >= 9) ? "cross" : "diamond")
     )
+    .style('opacity', 0.2)
     .style("stroke", (d) => d.type)
     .style("fill", (d) => d.level);
 
+  nodeEnter.append("image")
+    .attr("xlink:href", (d) => `icons/${d.icon}`)
+    .attr("x", "-12px")
+    .attr("y", "-12px")
+    .attr("width", "24px")
+    .attr("height", "24px");
+
   nodeEnter.append("text")
-    .attr("x", (d) =>  d.children || d._children ? (d.value + 4) * -1 : d.value + 4)
+    .attr("x", (d) => d.children || d._children ? (d.value + 4) * -1 : d.value + 4)
     .attr("dy", ".35em")
     .attr("text-anchor", (d) => d.children || d._children ? "end" : "start")
     .text((d) => d.name)
