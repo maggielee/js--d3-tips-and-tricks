@@ -69,8 +69,18 @@ const update = (source) => {
     .attr("class", "node")
     .attr("transform", (d) => `translate(${d.y},${d.x})`);
 
-  nodeEnter.append("circle")
-    .attr("r", (d) => d.value)
+  //   There are six pre-defined symbol types as follows;
+  // • circle - a circle.
+  // • cross - a Greek cross or plus sign.
+  // • diamond - a rhombus.
+  // • square - an axis-aligned square.
+  // • triangle-down - a downward-pointing equilateral triangle.
+  // • triangle-up - an upward-pointing equilateral triangle.
+  nodeEnter.append("path")
+    .attr("d", d3.svg.symbol()
+      .size((d) => 10*d.value)
+      .type((d) => (d.value >= 9)? "cross" : "diamond")
+    )
     .style("stroke", (d) => d.type)
     .style("fill", (d) => d.level);
 
