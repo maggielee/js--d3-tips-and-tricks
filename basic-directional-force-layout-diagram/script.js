@@ -20,7 +20,7 @@ d3.csv("data.csv", (error, links) => {
     .nodes(d3.values(nodes))
     .links(links)
     .size([width, height])
-    .linkDistance(60)
+    .linkDistance((d) => Math.pow(d.value, 2)*60*3)
     .charge(-300)
     .on("tick", tick)
     .start();
