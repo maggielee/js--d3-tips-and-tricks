@@ -16,6 +16,21 @@ d3.csv("data.csv", (error, links) => {
     link.value = +link.value;
   });
 
+  const v = d3.scale.linear().range([0, 100]);
+  v.domain([0, d3.max(links, function(d) { return d.value; })]);
+  links.forEach((link) => {
+    const value = link.value * 50;
+    if (value <= 25) {
+      link.type = "twofive";
+    } else if (value <= 50 && value > 25) {
+      link.type = "fivezero";
+    } else if (value <= 75 && value > 50) {
+      link.type = "sevenfive";
+    } else {
+      link.type = "onezerozero";
+    }
+  });
+
   const force = d3.layout.force()
     .nodes(d3.values(nodes))
     .links(links)
@@ -45,7 +60,6 @@ d3.csv("data.csv", (error, links) => {
     .data(force.links())
     .enter().append("svg:path")
     .attr("class", (d) => `link ${d.type}`)
-    .attr("class", "link")
     .attr("marker-end", "url(#end)");
 
   // define the nodes
