@@ -72,8 +72,10 @@ d3.csv("data.csv", (error, links) => {
     .call(force.drag);
 
   // add the nodes
+  const color = d3.scale.category20c();
   node.append("circle")
-    .attr("r", 5);
+    .attr("r", 5)
+    .style("fill", (d) => color(d.name));
 
   // add the text
   node.append("text")
@@ -97,26 +99,22 @@ d3.csv("data.csv", (error, links) => {
     d3.select(this).select("text").transition()
       .duration(750)
       .attr("x", 22)
-      .style("fill", "steelblue")
       .style("stroke", "lightsteelblue")
       .style("stroke-width", ".5px")
       .style("font", "20px sans-serif");
     d3.select(this).select("circle").transition()
       .duration(750)
-      .attr("r", 16)
-      .style("fill", "lightsteelblue");
+      .attr("r", 16);
   }
 
   function dblclick() {
     d3.select(this).select("circle").transition()
       .duration(750)
       .attr("r", 6)
-      .style("fill", "#ccc");
     d3.select(this).select("text").transition()
       .duration(750)
       .attr("x", 12)
       .style("stroke", "none")
-      .style("fill", "black")
       .style("stroke", "none")
       .style("font", "10px sans-serif");
   }
