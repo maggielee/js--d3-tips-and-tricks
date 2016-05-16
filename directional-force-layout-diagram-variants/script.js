@@ -16,8 +16,7 @@ d3.csv("data.csv", (error, links) => {
     link.value = +link.value;
   });
 
-  const v = d3.scale.linear().range([0, 100]);
-  v.domain([0, d3.max(links, function(d) { return d.value; })]);
+  const v = d3.scale.linear().range([0, 100]).domain([0, d3.max(links, (d) => d.value)]);
   links.forEach((link) => {
     const value = link.value * 50;
     if (value <= 25) {
@@ -110,7 +109,7 @@ d3.csv("data.csv", (error, links) => {
   function dblclick() {
     d3.select(this).select("circle").transition()
       .duration(750)
-      .attr("r", 6)
+      .attr("r", 6);
     d3.select(this).select("text").transition()
       .duration(750)
       .attr("x", 12)
