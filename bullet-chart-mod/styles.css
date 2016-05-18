@@ -1,0 +1,26 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: auto;
+    padding-top: 40px;
+    position: relative;
+    width: 800px;
+}
+
+button {
+    position: absolute;
+    right: 40px;
+    top: 10px;
+}
+
+.bullet { font: 10px sans-serif; }
+.bullet .marker { stroke: lightgreen; stroke-width: 5px; }
+.bullet .tick line { stroke: #666; stroke-width: .5px; }
+.bullet .range.s0 { fill: navy; }
+.bullet .range.s1 { fill: mediumblue; }
+.bullet .range.s2 { fill: dodgerblue; }
+.bullet .range.s3 { fill: aqua; }
+.bullet .range.s4 { fill: lightblue; }
+.bullet .measure.s0 { fill: red; }
+.bullet .measure.s1 { fill: pink; }
+.bullet .title { font-size: 14px; font-weight: bold; }
+.bullet .subtitle { fill: #999; }
