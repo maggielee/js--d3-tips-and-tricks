@@ -15,6 +15,8 @@ const path = d3.geo.path()
 
 const g = svg.append("g");
 
+const c20c = d3.scale.category20c();
+
 // load and display the World
 d3.json("world-110m2.json", (error, topology) => {
   g.selectAll("path")
@@ -22,4 +24,5 @@ d3.json("world-110m2.json", (error, topology) => {
     .enter()
     .append("path")
     .attr("d", path)
+    .style('fill', (d) => c20c(d.id))
 });
